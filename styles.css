@@ -1,0 +1,311 @@
+/* Variables de couleurs basées sur l'image A4 - 1.jpg */
+:root {
+    --navy: #152946;
+    --gold: #c5a059;
+    --light-gold: #fdf8ef;
+    --text: #4a4a4a;
+    --white: #ffffff;
+    --gray-bg: #f9f9f9;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+h1, h2, h3, blockquote {
+    font-family: 'Playfair Display', serif; /* Aspect académique */
+    color: var(--navy);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background: var(--white);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+nav { display: flex; justify-content: space-between; align-items: center; }
+
+.logo {
+    display: flex;
+    align-items: center; /* Aligne verticalement l'image et le texte */
+    gap: 12px;     
+    margin-bottom: 20px;
+}
+
+/* L'image du logo proprement dite */
+.logo-img {
+    height: 50px;        /* Fixe la hauteur (ajuste selon tes goûts entre 40px et 60px) */
+    width: auto;         /* Garde les proportions de l'image */
+    object-fit: contain; /* S'assure que le logo n'est pas écrasé */
+}
+
+.nav-menu { display: flex; list-style: none; gap: 25px; }
+.nav-menu a { text-decoration: none; color: var(--navy); font-size: 14px; font-weight: 500; }
+
+.nav-btn {
+    background: var(--navy);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    min-width: 240px; /* Un peu plus large pour les titres longs */
+    list-style: none;
+    padding: 10px 0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-top: 3px solid #c5a059; /* La couleur dorée de la maquette */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+/* Affiche le sous-menu au survol */
+.has-dropdown:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Style des liens du sous-menu */
+.dropdown li a {
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #152946;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown li:last-child a { border-bottom: none; }
+
+.dropdown li a:hover {
+    background-color: #fdf8ef;
+    color: #c5a059;
+    padding-left: 25px; /* Petit effet de décalage au survol */
+}
+
+/* On s'assure que le menu parent reste relatif */
+.nav-menu > li {
+    position: relative;
+    padding-bottom: 10px; /* Zone de confort pour que le menu ne se ferme pas */
+}
+
+/* Hero */
+.hero {
+    height: 85vh;
+    background: url('https://images.unsplash.com/photo-1541339907198-e08756ebafe1?q=80&w=2070') center/cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(21, 41, 70, 0.85), rgba(21, 41, 70, 0.7));
+}
+
+.hero-content { position: relative; z-index: 2; }
+
+.hero-tag {
+    background: rgba(255,255,255,0.1);
+    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.hero h1 { font-size: 52px; color: white; margin-bottom: 20px; }
+.hero h1 span { color: var(--gold); }
+.hero p { max-width: 700px; margin: 0 auto 30px; font-size: 18px; opacity: 0.9; }
+
+.btn { padding: 14px 28px; border-radius: 4px; border: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.btn-gold { background: var(--gold); color: var(--navy); margin-right: 15px; }
+.btn-outline { background: transparent; border: 1px solid white; color: white; }
+
+/* Stats (Flottantes) */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-top: -60px;
+    position: relative;
+    z-index: 5;
+    text-align: center;
+}
+
+.stat-card h2 { font-size: 36px; color: var(--navy); }
+.stat-card h2 span { color: var(--gold); }
+
+/* Presentation */
+.pres-img {
+    width: 100%;
+    height: 450px; /* On fixe une hauteur pour coller à la maquette */
+    border-radius: 12px;
+    overflow: hidden; /* Pour que les coins de l'image soient arrondis aussi */
+    border: 5px solid #ffffff; /* Petit liseré blanc */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* L'image elle-même */
+.pres-img img {
+    width: 100%;    /* Prend toute la largeur de sa colonne */
+    height: 100%;   /* Prend toute la hauteur fixée au dessus */
+    object-fit: cover; /* Recadre l'image proprement sans la déformer */
+    display: block;
+}
+
+/* On s'assure que la grille sépare bien l'image du texte */
+.presentation {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes égales */
+    gap: 60px;
+    align-items: center;
+    padding: 80px 0;
+}.section-label { color: var(--gold); font-weight: bold; font-size: 12px; letter-spacing: 2px; display: block; margin-bottom: 10px; }
+.pres-text h2 { font-size: 38px; margin-bottom: 20px; }
+.check-list { list-style: none; margin: 25px 0; }
+.check-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.check-list i { color: var(--gold); }
+
+.btn-dark { background: var(--navy); color: white; padding: 12px 30px; border: none; border-radius: 4px; cursor: pointer; }
+
+/* Quote */
+.quote-section { background: var(--navy); color: white; text-align: center; padding: 80px 0; position: relative; margin-bottom: 40px;}
+.quote-icon { font-size: 40px; color: var(--gold); margin-bottom: 20px; opacity: 0.5; }
+blockquote { font-size: 28px; font-style: italic; color: white; max-width: 800px; margin: 0 auto; }
+cite { display: block; margin-top: 20px; font-size: 16px; font-family: 'Inter', sans-serif; opacity: 0.7; }
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes égales */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* La carte d'actualité */
+.news-card {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden; /* Coupe tout ce qui dépasse, notamment l'image */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px); /* Petit effet de levier au survol */
+}
+
+/* FIX DES IMAGES TROP GROSSES */
+.news-card img {
+    width: 100%;        /* Force l'image à faire la largeur de la carte */
+    height: 200px;      /* On fixe une hauteur commune pour toutes les images */
+    object-fit: cover;  /* Recadre l'image sans la déformer (indispensable !) */
+    display: block;
+}
+
+/* Texte à l'intérieur de la carte */
+.news-body {
+    padding: 20px;
+}
+
+.news-date {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.news-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--navy);
+}
+
+.news-card p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.center-btn {
+    text-align: center;
+    margin-top: 50px; /* Espace suffisant après les cartes */
+    margin-bottom: 80px; /* Espace avant la section suivante */
+}
+
+/* Le bouton "Voir toutes les actualités" */
+.btn-outline-dark {
+    background-color: transparent; /* Fond transparent par défaut */
+    color: #152946;               /* Bleu marine (votre variable --navy) */
+    border: 1.5px solid #152946;  /* Bordure fine bleue */
+    padding: 12px 35px;           /* Largeur généreuse pour un look premium */
+    border-radius: 30px;          /* Forme pillule/arrondie comme sur l'image */
+    font-size: 14px;
+    font-weight: 600;             /* Texte légèrement gras */
+    text-transform: none;         /* Garde la casse normale */
+    cursor: pointer;
+    transition: all 0.3s ease;    /* Transition douce pour l'animation */
+    font-family: 'Inter', sans-serif;
+}
+
+/* Effet au survol (Hover) */
+.btn-outline-dark:hover {
+    background-color: #152946;    /* Le fond devient bleu */
+    color: #ffffff;               /* Le texte devient blanc */
+    transform: translateY(-2px);  /* Petit saut vers le haut */
+    box-shadow: 0 5px 15px rgba(21, 41, 70, 0.2); /* Ombre légère bleue */
+}
+
+/* Effet au clic (Active) */
+.btn-outline-dark:active {
+    transform: translateY(0);     /* Le bouton redescend quand on clique */
+}
+
+/* Footer */
+footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
+.footer-about h3 { color: var(--white); margin-bottom: 20px; }
+.footer-links ul { list-style: none; }
+.footer-links a { color: #ccc; text-decoration: none; line-height: 2; }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .nav-menu, .nav-btn { display: none; }
+    .hero h1 { font-size: 32px; }
+    .stats, .presentation, .news-grid, .footer-grid { grid-template-columns: 1fr; }
+}
