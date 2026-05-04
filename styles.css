@@ -370,6 +370,27 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
     .nav-menu.active {
         right: 0;
     }
+
+        .has-dropdown {
+        position: relative;
+    }
+
+    .dropdown {
+        display: none;
+        position: static;
+        box-shadow: none;
+        padding-left: 15px;
+        background: transparent;
+    }
+
+    .has-dropdown.open .dropdown {
+        display: block;
+    }
+
+    /* ton icône chevron devient cliquable */
+    .has-dropdown i {
+        pointer-events: none;
+    }
 }
 
 

@@ -1,3 +1,4 @@
+
 window.addEventListener('scroll', function() {
     const header = document.querySelector('header');
 
@@ -20,12 +21,13 @@ const burger = document.querySelector('.burger');
 const navMenu = document.querySelector('.nav-menu');
 
 if (burger && navMenu) {
+
     burger.addEventListener('click', function() {
         burger.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
 
-    // fermer le menu quand on clique sur un lien
+    // fermer le menu quand on clique sur un lien normal
     document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', function() {
             burger.classList.remove('active');
@@ -36,11 +38,27 @@ if (burger && navMenu) {
 
 
 // =====================
+// DROPDOWN MOBILE FIX (IMPORTANT)
+// =====================
+document.querySelectorAll('.has-dropdown > a').forEach(link => {
+    link.addEventListener('click', function(e) {
+
+        if (window.innerWidth <= 1160) {
+            e.preventDefault(); // empêche le "#"
+            this.parentElement.classList.toggle('open');
+        }
+
+    });
+});
+
+
+// =====================
 // COUNTERS ANIMATION
 // =====================
 const counters = document.querySelectorAll('.counter');
 
 const observer = new IntersectionObserver(function(entries) {
+
     entries.forEach(function(entry) {
 
         if (entry.isIntersecting) {
@@ -71,6 +89,7 @@ const observer = new IntersectionObserver(function(entries) {
         }
 
     });
+
 }, {
     threshold: 0.5
 });
