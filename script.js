@@ -1,4 +1,7 @@
 
+// =====================
+// HEADER SCROLL
+// =====================
 window.addEventListener('scroll', function() {
     const header = document.querySelector('header');
 
@@ -27,9 +30,17 @@ if (burger && navMenu) {
         navMenu.classList.toggle('active');
     });
 
-    // fermer le menu quand on clique sur un lien normal
+    // fermeture intelligente du menu
     document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', function() {
+
+            const parentDropdown = this.closest('.has-dropdown');
+
+            // ❌ si c’est un dropdown en mobile → ne pas fermer
+            if (window.innerWidth <= 1160 && parentDropdown) {
+                return;
+            }
+
             burger.classList.remove('active');
             navMenu.classList.remove('active');
         });
@@ -38,7 +49,7 @@ if (burger && navMenu) {
 
 
 // =====================
-// DROPDOWN MOBILE FIX (IMPORTANT)
+// DROPDOWN MOBILE (FIX IMPORTANT)
 // =====================
 document.querySelectorAll('.has-dropdown > a').forEach(link => {
     link.addEventListener('click', function(e) {

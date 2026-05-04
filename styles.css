@@ -381,6 +381,7 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
         box-shadow: none;
         padding-left: 15px;
         background: transparent;
+        border-top: none;
     }
 
     .has-dropdown.open .dropdown {
