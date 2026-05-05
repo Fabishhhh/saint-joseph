@@ -433,7 +433,12 @@ max-height: 0;
         transition: max-height 0.4s ease-out; 
     }
     
-
+.presentation.container {
+        padding-left: 20px;
+        padding-right: 20px;
+        /* Optionnel : tu peux aussi ajuster l'espace entre l'image et le texte si besoin */
+        gap: 40px; 
+    }
     
     .logo-img {
         height: 50px;
@@ -458,6 +463,8 @@ max-height: 500px; /* Assez grand pour contenir les liens */
 
     .presentation {
         gap: 40px;
+        grid-template-columns: 1fr;
+
     }
 
     .stats {
