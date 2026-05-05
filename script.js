@@ -22,53 +22,58 @@ window.addEventListener('scroll', function() {
 // =====================
 const burger = document.querySelector('.burger');
 const navMenu = document.querySelector('.nav-menu');
+const dropdowns = document.querySelectorAll('.has-dropdown');
 
 if (burger && navMenu) {
 
+    // 1. Toggle du menu burger
     burger.addEventListener('click', function() {
         burger.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
 
-    // fermeture intelligente (NE PAS fermer si dropdown mobile)
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', function(e) {
+    // 2. Gestion des Dropdowns sur Mobile (NAVIGATION PROPRE)
+    document.querySelectorAll('.has-dropdown > a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            
+            // On s'aligne sur le breakpoint CSS de 1260px
+            if (window.innerWidth <= 1260) {
+                e.preventDefault();
+                e.stopPropagation();
 
-        // 👉 si c’est un parent dropdown → on ignore
-        if (window.innerWidth <= 1160 && this.parentElement.classList.contains('has-dropdown')) {
-            return;
-        }
+                const parent = this.parentElement;
 
-        burger.classList.remove('active');
-        navMenu.classList.remove('active');
+                // On ferme les autres dropdowns pour n'en laisser qu'un ouvert
+                dropdowns.forEach(item => {
+                    if (item !== parent) {
+                        item.classList.remove('open');
+                    }
+                });
+
+                // On bascule l'état ouvert du parent actuel
+                parent.classList.toggle('open');
+            }
+        });
     });
-});
 
+    // 3. Fermeture intelligente
+    // On ne ferme le menu burger QUE si on clique sur un lien final (pas un parent de dropdown)
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+            
+            const isParent = this.parentElement.classList.contains('has-dropdown');
+            
+            // Sur mobile, si c'est un parent, on ne ferme pas le burger (on veut voir le sous-menu)
+            if (window.innerWidth <= 1260 && isParent) {
+                return;
+            }
 
-// =====================
-// DROPDOWN MOBILE FIX (NAVIGATION PROPRE)
-// =====================
-document.querySelectorAll('.has-dropdown > a').forEach(link => {
-    link.addEventListener('click', function(e) {
-
-        if (window.innerWidth <= 1160) {
-            e.preventDefault();
-            e.stopPropagation(); // 💥 TRÈS IMPORTANT
-
-            const parent = this.parentElement;
-
-            // ferme les autres
-            document.querySelectorAll('.has-dropdown').forEach(item => {
-                if (item !== parent) {
-                    item.classList.remove('open');
-                }
-            });
-
-            parent.classList.toggle('open');
-        }
-
+            // Sinon, on ferme tout
+            burger.classList.remove('active');
+            navMenu.classList.remove('active');
+            dropdowns.forEach(d => d.classList.remove('open'));
+        });
     });
-});
 
 
 // =====================

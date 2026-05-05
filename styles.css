@@ -382,22 +382,21 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
     }
 
     .nav-menu {
-        position: fixed;
+position: fixed;
         top: 0;
         right: -100%;
         width: 70%;
         height: 100vh;
         background: white;
-
         display: flex;
         flex-direction: column;
-
-        padding: 80px 30px;
-        gap: 0px;
-
+        justify-content: flex-start; /* Aligne en haut au lieu d'étirer */
+        padding: 100px 30px; /* Espace pour le bouton burger en haut */
+        gap: 10px; /* Espace réduit entre les catégories */
         box-shadow: -10px 0 30px rgba(0,0,0,0.1);
         transition: right 0.3s ease;
         z-index: 2000;
+        overflow-y: auto; /* Permet de scroller si le menu est long */
     }
 
     .nav-menu.active {
@@ -405,7 +404,16 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
     }
 
     .nav-menu li {
-        margin-bottom: 15px;
+width: 100%;
+        margin-bottom: 0; /* On gère l'espace via le gap du parent */
+        display: block;
+    }
+
+    .nav-menu li a {
+        padding: 15px 0;
+        width: 100%;
+        justify-content: space-between; /* Place la flèche à droite */
+        border-bottom: 1px solid #f0f0f0;
     }
 
     .has-dropdown {
@@ -413,25 +421,18 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
     }
 
     .dropdown {
-        max-height: 0;
+max-height: 0;
         overflow: hidden;
-        opacity: 1;         
-        visibility: visible; 
-        transition: max-height 0.3s ease;
         position: static;
+        opacity: 1;
+        visibility: visible;
         box-shadow: none;
-        padding-left: 15px;
-        background: transparent;
         border-top: none;
-        transform: none;    
-    }
-
-    .presentation.container {
+        transform: none;
         padding-left: 20px;
-        padding-right: 20px;
-        /* Optionnel : tu peux aussi ajuster l'espace entre l'image et le texte si besoin */
-        gap: 40px; 
+        transition: max-height 0.4s ease-out; 
     }
+    
 
     
     .logo-img {
@@ -439,8 +440,9 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
     }
 
     .has-dropdown.open .dropdown {
-        max-height: 500px;
-    }
+max-height: 500px; /* Assez grand pour contenir les liens */
+        padding-top: 10px;
+        padding-bottom: 10px;    }
 
     .has-dropdown i {
         pointer-events: none;
@@ -468,7 +470,7 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
     }
 
     .logo-img {
-        height: 40px;
+        height: 45px;
     }
 
     .footer-grid {
@@ -520,7 +522,7 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
     }
 
     .logo-img {
-        height: 30px;
+        height: 40px;
     }
 
     .pres-text h2 {
@@ -562,7 +564,7 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
     }
 
     .logo-img {
-        height: 20px;
+        height: 35px;
     }
 
     .news-card img {
