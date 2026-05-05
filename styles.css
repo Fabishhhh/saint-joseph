@@ -19,6 +19,7 @@ body {
 h1, h2, h3, blockquote {
     font-family: 'Playfair Display', serif;
     color: var(--navy);
+
 }
 
 .container {
@@ -29,7 +30,7 @@ h1, h2, h3, blockquote {
 
 /* Header */
 header {
-    background: var(--white);
+    background: #ffffff;
     padding: 15px 0;
     position: sticky;
     top: 0;
@@ -41,10 +42,10 @@ header .container {
     max-width: 1300px;
     margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 50px;
-    padding: 10px 0;
+    gap: 30px;
+    padding: 10px 20px;
 }
 
 nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
@@ -59,7 +60,9 @@ nav { display: flex; justify-content: space-between; align-items: center; width:
 .logo-img {
     height: 60px;       
     width: auto;       
-    object-fit: contain; 
+    object-fit: contain;
+    max-width: 100%;
+ 
 }
 
 .nav-menu { display: flex; list-style: none; gap: 30px; margin: 0 auto; padding: 0; }
@@ -190,6 +193,8 @@ background: var(--navy);
     border: 1px solid var(--gold);
     color: var(--gold);
     margin-bottom: 20px;
+    box-shadow: 0 0 25px #c5a059;
+
 }
 
 .hero-img {
@@ -252,7 +257,8 @@ background: var(--navy);
     gap: 60px;
     align-items: center;
     padding: 80px 0;
-}.section-label { color: var(--gold); font-weight: bold; font-size: 12px; letter-spacing: 2px; display: block; margin-bottom: 10px; }
+}
+.section-label { color: var(--gold); font-weight: bold; font-size: 12px; letter-spacing: 2px; display: block; margin-bottom: 10px; }
 .pres-text h2 { font-size: 38px; margin-bottom: 20px; }
 .check-list { list-style: none; margin: 25px 0; }
 .check-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
@@ -402,7 +408,7 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
         margin-bottom: 15px;
     }
 
-        .has-dropdown {
+    .has-dropdown {
         position: relative;
     }
 
@@ -418,6 +424,10 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
         background: transparent;
         border-top: none;
         transform: none;    
+    }
+
+    .logo-img {
+        height: 50px;
     }
 
     .has-dropdown.open .dropdown {
@@ -447,6 +457,10 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
 
     .news-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .logo-img {
+        height: 40px;
     }
 
     .footer-grid {
@@ -497,6 +511,10 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
         height: 300px;
     }
 
+    .logo-img {
+        height: 30px;
+    }
+
     .pres-text h2 {
         font-size: 28px;
     }
@@ -533,6 +551,10 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
 
     .stat-card h2 {
         font-size: 24px;
+    }
+
+    .logo-img {
+        height: 20px;
     }
 
     .news-card img {
