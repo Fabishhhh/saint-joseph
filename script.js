@@ -30,33 +30,41 @@ if (burger && navMenu) {
         navMenu.classList.toggle('active');
     });
 
-    // fermeture intelligente du menu
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', function() {
+    // fermeture intelligente (NE PAS fermer si dropdown mobile)
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', function(e) {
 
-            const parentDropdown = this.closest('.has-dropdown');
+        // 👉 si c’est un parent dropdown → on ignore
+        if (window.innerWidth <= 1160 && this.parentElement.classList.contains('has-dropdown')) {
+            return;
+        }
 
-            // ❌ si c’est un dropdown en mobile → ne pas fermer
-            if (window.innerWidth <= 1160 && parentDropdown) {
-                return;
-            }
-
-            burger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
+        burger.classList.remove('active');
+        navMenu.classList.remove('active');
     });
-}
+});
 
 
 // =====================
-// DROPDOWN MOBILE (FIX IMPORTANT)
+// DROPDOWN MOBILE FIX (NAVIGATION PROPRE)
 // =====================
 document.querySelectorAll('.has-dropdown > a').forEach(link => {
     link.addEventListener('click', function(e) {
 
         if (window.innerWidth <= 1160) {
-            e.preventDefault(); // empêche le "#"
-            this.parentElement.classList.toggle('open');
+            e.preventDefault();
+            e.stopPropagation(); // 💥 TRÈS IMPORTANT
+
+            const parent = this.parentElement;
+
+            // ferme les autres
+            document.querySelectorAll('.has-dropdown').forEach(item => {
+                if (item !== parent) {
+                    item.classList.remove('open');
+                }
+            });
+
+            parent.classList.toggle('open');
         }
 
     });
@@ -108,3 +116,4 @@ const observer = new IntersectionObserver(function(entries) {
 counters.forEach(function(counter) {
     observer.observe(counter);
 });
+}

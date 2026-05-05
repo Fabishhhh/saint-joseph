@@ -17,7 +17,7 @@ body {
 }
 
 h1, h2, h3, blockquote {
-    font-family: 'Playfair Display', serif; /* Aspect académique */
+    font-family: 'Playfair Display', serif;
     color: var(--navy);
 }
 
@@ -37,44 +37,55 @@ header {
     box-shadow: 0 2px 15px rgba(0,0,0,0.05);
 }
 
-nav { display: flex; justify-content: space-between; align-items: center; }
+header .container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    padding: 10px 0;
+}
+
+nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 
 .logo {
     display: flex;
-    align-items: center; /* Aligne verticalement l'image et le texte */
-    gap: 12px;     
-    margin-bottom: 20px;
+    align-items: center;
+    margin-bottom: 0;
 }
 
 /* L'image du logo proprement dite */
 .logo-img {
-    height: 50px;        /* Fixe la hauteur (ajuste selon tes goûts entre 40px et 60px) */
-    width: auto;         /* Garde les proportions de l'image */
-    object-fit: contain; /* S'assure que le logo n'est pas écrasé */
+    height: 60px;       
+    width: auto;       
+    object-fit: contain; 
 }
 
-.nav-menu { display: flex; list-style: none; gap: 25px; }
-.nav-menu a { text-decoration: none; color: var(--navy); font-size: 14px; font-weight: 500; }
+.nav-menu { display: flex; list-style: none; gap: 25px; margin: 0 auto; padding: 0; }
+.nav-menu a { text-decoration: none; color: var(--navy); font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
 
 .nav-btn {
-    background: var(--navy);
+background: var(--navy);
     color: white;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 50px;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .dropdown {
     position: absolute;
-    top: 100%;
-    left: 0;
+    top: calc(100% - 5px);    left: 0;
     background: #ffffff;
-    min-width: 240px; /* Un peu plus large pour les titres longs */
+    min-width: 240px; 
     list-style: none;
     padding: 10px 0;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    border-top: 3px solid #c5a059; /* La couleur dorée de la maquette */
+    border-top: 3px solid #c5a059;
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
@@ -82,14 +93,22 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     z-index: 1000;
 }
 
-/* Affiche le sous-menu au survol */
+.has-dropdown::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15px; 
+    background: transparent;
+}
+
 .has-dropdown:hover .dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-/* Style des liens du sous-menu */
 .dropdown li a {
     padding: 12px 20px;
     font-size: 14px;
@@ -105,13 +124,16 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 .dropdown li a:hover {
     background-color: #fdf8ef;
     color: #c5a059;
-    padding-left: 25px; /* Petit effet de décalage au survol */
+    padding-left: 25px; 
 }
 
-/* On s'assure que le menu parent reste relatif */
+
 .nav-menu > li {
     position: relative;
-    padding-bottom: 10px; /* Zone de confort pour que le menu ne se ferme pas */
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .burger {
@@ -144,7 +166,6 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 /* Hero */
 .hero {
     height: 85vh;
-    background: url('https://images.unsplash.com/photo-1541339907198-e08756ebafe1?q=80&w=2070') center/cover;
     position: relative;
     display: flex;
     align-items: center;
@@ -169,6 +190,17 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     border: 1px solid var(--gold);
     color: var(--gold);
     margin-bottom: 20px;
+}
+
+.hero-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    z-index: 0;
 }
 
 .hero h1 { font-size: 52px; color: white; margin-bottom: 20px; }
@@ -200,22 +232,20 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 /* Presentation */
 .pres-img {
     width: 100%;
-    height: 450px; /* On fixe une hauteur pour coller à la maquette */
+    height: 450px; 
     border-radius: 12px;
-    overflow: hidden; /* Pour que les coins de l'image soient arrondis aussi */
-    border: 5px solid #ffffff; /* Petit liseré blanc */
+    overflow: hidden; 
+    border: 5px solid #ffffff; 
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* L'image elle-même */
 .pres-img img {
-    width: 100%;    /* Prend toute la largeur de sa colonne */
-    height: 100%;   /* Prend toute la hauteur fixée au dessus */
-    object-fit: cover; /* Recadre l'image proprement sans la déformer */
+    width: 100%;    
+    height: 100%;   
+    object-fit: cover; 
     display: block;
 }
 
-/* On s'assure que la grille sépare bien l'image du texte */
 .presentation {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Deux colonnes égales */
@@ -238,16 +268,15 @@ cite { display: block; margin-top: 20px; font-size: 16px; font-family: 'Inter', 
 
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colonnes égales */
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-top: 40px;
 }
 
-/* La carte d'actualité */
 .news-card {
     background: #ffffff;
     border-radius: 8px;
-    overflow: hidden; /* Coupe tout ce qui dépasse, notamment l'image */
+    overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     border: 1px solid #eee;
     transition: transform 0.3s ease;
@@ -255,18 +284,16 @@ cite { display: block; margin-top: 20px; font-size: 16px; font-family: 'Inter', 
 }
 
 .news-card:hover {
-    transform: translateY(-5px); /* Petit effet de levier au survol */
+    transform: translateY(-5px);
 }
 
-/* FIX DES IMAGES TROP GROSSES */
 .news-card img {
-    width: 100%;        /* Force l'image à faire la largeur de la carte */
-    height: 200px;      /* On fixe une hauteur commune pour toutes les images */
-    object-fit: cover;  /* Recadre l'image sans la déformer (indispensable !) */
+    width: 100%;        
+    height: 200px;      
+    object-fit: cover;  
     display: block;
 }
 
-/* Texte à l'intérieur de la carte */
 .news-body {
     padding: 20px;
 }
@@ -295,36 +322,39 @@ cite { display: block; margin-top: 20px; font-size: 16px; font-family: 'Inter', 
 
 .center-btn {
     text-align: center;
-    margin-top: 50px; /* Espace suffisant après les cartes */
-    margin-bottom: 80px; /* Espace avant la section suivante */
+    margin-top: 50px;
+    margin-bottom: 80px;
 }
 
-/* Le bouton "Voir toutes les actualités" */
 .btn-outline-dark {
-    background-color: transparent; /* Fond transparent par défaut */
-    color: #152946;               /* Bleu marine (votre variable --navy) */
-    border: 1.5px solid #152946;  /* Bordure fine bleue */
-    padding: 12px 35px;           /* Largeur généreuse pour un look premium */
-    border-radius: 30px;          /* Forme pillule/arrondie comme sur l'image */
+    background-color: transparent; 
+    color: #152946;              
+    border: 1.5px solid #152946; 
+    padding: 12px 35px;           
+    border-radius: 30px;          
     font-size: 14px;
-    font-weight: 600;             /* Texte légèrement gras */
-    text-transform: none;         /* Garde la casse normale */
+    font-weight: 600;             
+    text-transform: none;       
     cursor: pointer;
-    transition: all 0.3s ease;    /* Transition douce pour l'animation */
+    transition: all 0.3s ease;    
     font-family: 'Inter', sans-serif;
 }
 
 /* Effet au survol (Hover) */
 .btn-outline-dark:hover {
-    background-color: #152946;    /* Le fond devient bleu */
-    color: #ffffff;               /* Le texte devient blanc */
-    transform: translateY(-2px);  /* Petit saut vers le haut */
-    box-shadow: 0 5px 15px rgba(21, 41, 70, 0.2); /* Ombre légère bleue */
+    background-color: #152946;    
+    color: #ffffff;           
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(21, 41, 70, 0.2);
 }
 
 /* Effet au clic (Active) */
 .btn-outline-dark:active {
-    transform: translateY(0);     /* Le bouton redescend quand on clique */
+    transform: translateY(0);     
+}
+
+.logo-light{
+    margin-bottom: 20px;
 }
 
 /* Footer */
@@ -335,9 +365,6 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
 .footer-links a { color: #ccc; text-decoration: none; line-height: 2; }
 
 
-/* ============================= */
-/* BURGER À PARTIR DE 1160px */
-/* ============================= */
 @media (max-width: 1160px) {
     .burger {
         display: flex;
@@ -360,7 +387,7 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
         flex-direction: column;
 
         padding: 80px 30px;
-        gap: 20px;
+        gap: 0px;
 
         box-shadow: -10px 0 30px rgba(0,0,0,0.1);
         transition: right 0.3s ease;
@@ -371,33 +398,38 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
         right: 0;
     }
 
+    .nav-menu li {
+        margin-bottom: 15px;
+    }
+
         .has-dropdown {
         position: relative;
     }
 
     .dropdown {
-        display: none;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 1;         
+        visibility: visible; 
+        transition: max-height 0.3s ease;
         position: static;
         box-shadow: none;
         padding-left: 15px;
         background: transparent;
         border-top: none;
+        transform: none;    
     }
 
     .has-dropdown.open .dropdown {
-        display: block;
+        max-height: 500px;
     }
 
-    /* ton icône chevron devient cliquable */
     .has-dropdown i {
         pointer-events: none;
     }
 }
 
 
-/* ============================= */
-/* TABLETTE (<= 1024px) */
-/* ============================= */
 @media (max-width: 1024px) {
 
     .hero h1 {
@@ -423,10 +455,6 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
     }
 }
 
-
-/* ============================= */
-/* MOBILE (<= 768px) */
-/* ============================= */
 @media (max-width: 768px) {
 
     .hero {
@@ -488,10 +516,6 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
     }
 }
 
-
-/* ============================= */
-/* PETITS MOBILES (<= 480px) */
-/* ============================= */
 @media (max-width: 480px) {
 
     .hero h1 {
