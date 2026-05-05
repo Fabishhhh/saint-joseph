@@ -365,7 +365,7 @@ footer { background: #1a1a1a; color: white; padding: 60px 0; margin-top: 50px; }
 .footer-links a { color: #ccc; text-decoration: none; line-height: 2; }
 
 
-@media (max-width: 1160px) {
+@media (max-width: 1260px) {
     .burger {
         display: flex;
         z-index: 2001;
